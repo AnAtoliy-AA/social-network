@@ -3,6 +3,11 @@ import React from 'react';
 import styles from './MyPosts.module.css'
 
 const MyPosts = () => {
+
+    let postData = [
+{id: 1, message: 'hi', likesCount: 4},
+{id: 2, message: 'hi how are you', likesCount: 6},
+    ];
     return (
         <div className={styles.postsBlock}>
             <h2>
@@ -20,8 +25,7 @@ const MyPosts = () => {
                 </div>
             </div>
             <div className={styles.posts}>
-                <Post message='HI' likesCount='2' />
-                <Post message='HI world' likesCount='3' />
+                <Post message={postData[0].message} likesCount={postData[0].likesCount} />
             </div>
         </div>
     )
