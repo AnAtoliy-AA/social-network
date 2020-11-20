@@ -1,18 +1,27 @@
 import Post from '../Post/Post';
 import React from 'react';
-import classes from './MyPosts.module.css';
+import styles from './MyPosts.module.css'
 
 const MyPosts = () => {
     return (
-        <div>My posts
+        <div className={styles.postsBlock}>
+            <h2>
+                My posts
+               </h2>
             <div>
-                <textarea></textarea>
-                <button>Add post</button>
-                <button>Remove</button>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
+                <div>
+                    <button>Remove</button>
+                </div>
             </div>
-            <div className={ classes.posts }>
-                <Post message='HI' likesCount='2'/>
-                <Post message='HI world' likesCount='3'/>
+            <div className={styles.posts}>
+                <Post message='HI' likesCount='2' />
+                <Post message='HI world' likesCount='3' />
             </div>
         </div>
     )
