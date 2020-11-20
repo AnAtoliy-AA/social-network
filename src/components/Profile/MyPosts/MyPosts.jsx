@@ -4,10 +4,14 @@ import styles from './MyPosts.module.css'
 
 const MyPosts = () => {
 
-    let postData = [
+    let postsData = [
 {id: 1, message: 'hi', likesCount: 4},
 {id: 2, message: 'hi how are you', likesCount: 6},
     ];
+
+    let postsElements = postsData
+    .map(p => <Post message={p.message} likesCount={p.likesCount} />)
+
     return (
         <div className={styles.postsBlock}>
             <h2>
@@ -25,7 +29,7 @@ const MyPosts = () => {
                 </div>
             </div>
             <div className={styles.posts}>
-                <Post message={postData[0].message} likesCount={postData[0].likesCount} />
+                { postsElements }
             </div>
         </div>
     )
