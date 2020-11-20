@@ -2,40 +2,40 @@ import { NavLink } from 'react-router-dom';
 import React from 'react';
 import styles from './Dialogs.module.css';
 
+const DialogItem = (props) => {
+    let path = "/dialogs/" + props.id;
+
+    return (
+        <div className={styles.dialog}>
+            <NavLink to={path}>
+                {props.name}
+            </NavLink>
+        </div>
+    )
+}
+
+const Message = (props) => {
+    return (
+        <div className={styles.message}>
+            {props.message}
+        </div>
+    )
+}
+
 const Dialogs = (props) => {
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItems}>
-                <div className={styles.dialog}>
-                    <NavLink to="/dialogs/1">
-                        SASHA
-                       </NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to="/dialogs/2">
-                        MASHA</NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to="/dialogs/3">
-                        PASHA
-                        </NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to="/dialogs/4">
-                        KASHA </NavLink>
-                </div>
-                <div className={styles.dialog}>
-                    <NavLink to="/dialogs/5">
-                        PROSTOKVASHA
-                         </NavLink>
-                </div>
+                <DialogItem name="sasha" id="1" />
+                <DialogItem name="MASHA" id="2" />
+                <DialogItem name="PASHA" id="3" />
+                <DialogItem name="KASHA" id="4" />
+                <DialogItem name="PROSTOKVASHA" id="5" />
             </div>
             <div className={styles.messages}>
-                <div className={styles.message}>hi</div>
-                <div className={styles.message}>ghg</div>
-                <div className={styles.message}>dsssssssss</div>
-                <div className={styles.message}>sdfsdfsfd</div>
-                <div className={styles.message}>sdrt</div>
+                <Message message="hi" />
+                <Message message="by" />
+                <Message message="fdf" />
             </div>
         </div>
     )
