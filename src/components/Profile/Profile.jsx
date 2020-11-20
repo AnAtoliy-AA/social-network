@@ -4,11 +4,13 @@ import React from 'react';
 
 // import styles from './Profile.module.css';
 
-const Profile = () => {
+const Profile = (props) => {
+   
+        
     return (
         <div>
            <ProfileInfo />
-           <MyPosts />
+           <MyPosts posts={props.posts} />
         </div>
     )
 }
