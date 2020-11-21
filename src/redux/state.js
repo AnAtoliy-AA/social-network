@@ -1,3 +1,10 @@
+const ACTION_CONST = {
+    ADD_POST: 'ADD-POST',
+    UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT',
+    ADD_MESSAGE: 'ADD-MESSAGE',
+    UPDATE_NEW_MESSAGE_TEXT: 'UPDATE_NEW_MESSAGE_TEXT',
+}
+
 let store = {
     _state: {
         profilePage: {
@@ -33,7 +40,7 @@ let store = {
 
     dispatch(action) {
         switch (action.type) {
-            case 'ADD-POST':
+            case ACTION_CONST.ADD_POST:
                 let newPost = {
                     id: 5,
                     message: this._state.profilePage.newPostText,
@@ -43,11 +50,11 @@ let store = {
                 this._state.profilePage.newPostText = '';
                 this._callSubscriber(this._state);
                 break;
-            case 'UPDATE-NEW-POST-TEXT':
+            case ACTION_CONST.UPDATE_NEW_POST_TEXT:
                 this._state.profilePage.newPostText = action.newPostText;
                 this._callSubscriber(this._state);
                 break;
-            case 'ADD-MESSAGE':
+            case ACTION_CONST.ADD_MESSAGE:
                 let newMessage = {
                     message: this._state.dialogsPage.newMessageText,
                 }
@@ -55,7 +62,7 @@ let store = {
                 this._state.dialogsPage.newMessageText = '';
                 this._callSubscriber(this._state);
                 break;
-            case 'UPDATE_NEW_MESSAGE_TEXT':
+            case ACTION_CONST.UPDATE_NEW_MESSAGE_TEXT:
                 this._state.dialogsPage.newMessageText = action.newMessageText;
                 this._callSubscriber(this._state);
                 break;
@@ -65,4 +72,21 @@ let store = {
     }
 }
 
+export const addPostActionCreator = () => {
+    return {
+        type: ACTION_CONST.ADD_POST
+    }
+}
+
+export const updateNewPostTextActionCreator = (text) => {
+    return { type: ACTION_CONST.UPDATE_NEW_POST_TEXT, newPostText: text }
+}
+
+export const addMessageActionCreator = () => {
+    return { type: ACTION_CONST.ADD_MESSAGE };
+}
+
+export const updateNewMessageTextActionCreator = (text) => {
+    return { type: ACTION_CONST.UPDATE_NEW_MESSAGE_TEXT, newMessageText: text };
+}
 export default store;
