@@ -2,13 +2,6 @@ import dialogsReducer from "./dialogs-reducer";
 import navBarReducer from "./navbar-reducer";
 import profileReducer from "./profile-reducer";
 
-const ACTION_CONST = {
-    ADD_POST: 'ADD-POST',
-    UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT',
-    ADD_MESSAGE: 'ADD-MESSAGE',
-    UPDATE_NEW_MESSAGE_TEXT: 'UPDATE_NEW_MESSAGE_TEXT',
-}
-
 let store = {
     _state: {
         profilePage: {
@@ -54,21 +47,4 @@ let store = {
     }
 }
 
-export const addPostActionCreator = () => {
-    return {
-        type: ACTION_CONST.ADD_POST
-    }
-}
-
-export const updateNewPostTextActionCreator = (text) => {
-    return { type: ACTION_CONST.UPDATE_NEW_POST_TEXT, newPostText: text }
-}
-
-export const addMessageActionCreator = () => {
-    return { type: ACTION_CONST.ADD_MESSAGE };
-}
-
-export const updateNewMessageTextActionCreator = (text) => {
-    return { type: ACTION_CONST.UPDATE_NEW_MESSAGE_TEXT, newMessageText: text };
-}
 export default store;
