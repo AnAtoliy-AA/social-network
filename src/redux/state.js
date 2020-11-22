@@ -47,6 +47,7 @@ let store = {
                     likesCount: 0,
                 }
                 this._state.profilePage.posts.push(newPost);
+                // console.log('textP:', this._state.profilePage.newPostText);
                 this._state.profilePage.newPostText = '';
                 this._callSubscriber(this._state);
                 break;
@@ -59,6 +60,7 @@ let store = {
                     message: this._state.dialogsPage.newMessageText,
                 }
                 this._state.dialogsPage.messages.push(newMessage);
+                // console.log('textD:', this._state.dialogsPage.newMessageText);
                 this._state.dialogsPage.newMessageText = '';
                 this._callSubscriber(this._state);
                 break;
