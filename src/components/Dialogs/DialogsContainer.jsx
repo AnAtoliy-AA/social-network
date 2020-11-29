@@ -2,25 +2,30 @@ import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../.
 
 import Dialogs from './Dialogs';
 import React from 'react';
+import StoreContext from '../../StoreContext';
 
 const DialogsConatiner = (props) => {
-
-    let state = props.store.getState().dialogsPage;
-
-    let sendMessage = () => {
-        props.store.dispatch(addMessageActionCreator());
-    }
-
-    let onMessageChange = (text) => {
-        // let text = newMessageElement.current.value;
-        props.store.dispatch(updateNewMessageTextActionCreator(text));
-    }
-
     return (
-        <Dialogs
-            updateNewMessageTextActionCreator={onMessageChange}
-            sendMessage={sendMessage}
-            dialogsPage={state} />
+        <StoreContext.Consumer>
+            {
+                (store) => {
+                    let state = store.getState().dialogsPage;
+
+                    let sendMessage = () => {
+                        store.dispatch(addMessageActionCreator());
+                    }
+                    let onMessageChange = (text) => {
+                        store.dispatch(updateNewMessageTextActionCreator(text));
+                    }
+
+                    return < Dialogs
+                        updateNewMessageTextActionCreator={onMessageChange}
+                        sendMessage={sendMessage}
+                        dialogsPage={state} />
+                }
+            }
+        </StoreContext.Consumer>
+
     )
 }
 
