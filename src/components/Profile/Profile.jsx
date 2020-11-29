@@ -4,7 +4,7 @@ import React from 'react';
 
 // import styles from './Profile.module.css';
 
-const Profile = (props) => {
+const Profile = () => {
 
     return (
         <div>
