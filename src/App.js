@@ -1,6 +1,6 @@
 import './App.css';
 
-import DialogsConatiner from './components/Dialogs/DialogsContainer';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
@@ -16,7 +16,7 @@ const App = () => {
       <div className='app-wrapper__content'>
         <Route
           path='/dialogs'
-          render={() => <DialogsConatiner />} />
+          render={() => <DialogsContainer />} />
         <Route
           path='/profile'
           render={() => <Profile />} />
