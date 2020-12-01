@@ -8,10 +8,15 @@ const Dialogs = (props) => {
     let state = props.dialogsPage;
 
     let dialogsElements = state.dialogs
-        .map(dialog => <DialogItem name={dialog.name} id={dialog.id} />);
+        .map(dialog => <DialogItem
+            name={dialog.name}
+            id={dialog.id}
+            key={dialog.id} />);
 
     let messagesElements = state.messages
-        .map(m => <Message message={m.message} />);
+        .map(m => <Message
+            message={m.message}
+            key={m.id} />);
 
     let newMessageElement = React.createRef();
 
