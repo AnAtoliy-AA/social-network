@@ -1,15 +1,16 @@
 const ACTION_CONST = {
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
-    SET_USERS: 'SET_USERS'
+    SET_USERS: 'SET_USERS',
+    photoUrl: 'https://vignette.wikia.nocookie.net/tolik/images/1/1b/IMG_20190530_134438.jpg/revision/latest?cb=20190530104609&path-prefix=ru'
 }
 
 let initialState = {
     users: [
-        { id: 1, followed: 'false', fullName: 'BOSS', status: 'xcv cvvc', location: { city: 'Minsk', country: 'Belarus' } },
-        { id: 2, followed: 'true', fullName: 'MAN', status: 'here', location: { city: 'Minsk', country: 'Belarus' } },
-        { id: 3, followed: 'false', fullName: 'XXX', status: 'the', location: { city: 'Kiev', country: 'Ukrain' } },
-        { id: 4, followed: 'true', fullName: 'KTO-TO', status: 'sdfsdfsdf', location: { city: 'Minsk', country: 'Belarus' } },
+        { id: 1, photoUrl: ACTION_CONST.photoUrl, followed: false, fullName: 'BOSS', status: 'xcv cvvc', location: { city: 'Minsk', country: 'Belarus' } },
+        { id: 2, photoUrl: ACTION_CONST.photoUrl, followed: true, fullName: 'MAN', status: 'here', location: { city: 'Minsk', country: 'Belarus' } },
+        { id: 3, photoUrl: ACTION_CONST.photoUrl, followed: false, fullName: 'XXX', status: 'the', location: { city: 'Kiev', country: 'Ukrain' } },
+        { id: 4, photoUrl: ACTION_CONST.photoUrl, followed: true, fullName: 'KTO-TO', status: 'sdfsdfsdf', location: { city: 'Minsk', country: 'Belarus' } },
     ],
     newPostText: '',
 };
