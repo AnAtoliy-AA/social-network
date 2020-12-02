@@ -1,5 +1,6 @@
 import { followActionCreator, setUsersActionCreator, unfollowActionCreator } from '../../redux/users-reducer';
 
+import React from 'react';
 import Users from './Users';
 import { connect } from 'react-redux';
 
