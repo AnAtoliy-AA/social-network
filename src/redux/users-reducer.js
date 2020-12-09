@@ -2,11 +2,15 @@ const ACTION_CONST = {
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
     SET_USERS: 'SET_USERS',
+    SET_CURRENT_PAGE: 'SET_CURRENT_PAGE',
+    SET_TOTAL_PAGES_COUNT: 'SET_TOTAL_PAGES_COUNT',
 }
 
 let initialState = {
     users: [],
-    newPostText: '',
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -34,7 +38,13 @@ const usersReducer = (state = initialState, action) => {
             }
         }
         case ACTION_CONST.SET_USERS: {
-            return { ...state, users: [...state.users, ...action.users] }
+            return { ...state, users: action.users }
+        }
+        case ACTION_CONST.SET_CURRENT_PAGE: {
+            return { ...state, currentPage: action.currentPage }
+        }
+        case ACTION_CONST.SET_TOTAL_PAGES_COUNT: {
+            return { ...state, totalUsersCount: action.totalCount }
         }
         default:
             return state;
@@ -44,4 +54,6 @@ const usersReducer = (state = initialState, action) => {
 export const followActionCreator = (userId) => ({ type: ACTION_CONST.FOLLOW, userId });
 export const unfollowActionCreator = (userId) => ({ type: ACTION_CONST.UNFOLLOW, userId });
 export const setUsersActionCreator = (users) => ({ type: ACTION_CONST.SET_USERS, users });
+export const setCurrentPageActionCreator = (currentPage) => ({ type: ACTION_CONST.SET_CURRENT_PAGE, currentPage: currentPage });
+export const setUsersTotalCountActionCreator = (totalCount) => ({type:ACTION_CONST.SET_TOTAL_PAGES_COUNT,totalCount});
 export default usersReducer;
