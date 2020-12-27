@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-import { followActionCreator, setCurrentPageActionCreator, setUsersActionCreator, setUsersTotalCountActionCreator, toggleIsFetchingActionCreator, unfollowActionCreator } from '../../redux/users-reducer';
+import { follow, setCurrentPage, setUsers, setUsersTotalCount, toggleIsFetching, unfollow } from '../../redux/users-reducer';
 
 import Preloader from '../common/Preloader/Preloader';
 import React from 'react';
@@ -13,7 +13,7 @@ class UsersContainer extends React.Component {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.setUsersTotalCount(response.data.totalCount);
                 this.props.toggleIsFetching(false);
             });
     }
@@ -54,28 +54,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followActionCreator(userId))
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowActionCreator(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersActionCreator(users))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageActionCreator(pageNumber))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setUsersTotalCountActionCreator(totalCount))
-        },
-       toggleIsFetching: (isFetching) => {
-           dispatch(toggleIsFetchingActionCreator(isFetching))
-       }
 
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+    follow, unfollow, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching,
+})(UsersContainer);
