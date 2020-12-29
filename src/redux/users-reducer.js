@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const ACTION_CONST = {
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
@@ -73,4 +75,20 @@ export const setCurrentPage = (currentPage) => ({ type: ACTION_CONST.SET_CURRENT
 export const setUsersTotalCount = (totalCount) => ({ type: ACTION_CONST.SET_TOTAL_PAGES_COUNT, totalCount });
 export const toggleIsFetching = (isFetching) => ({ type: ACTION_CONST.TOGGLE_IS_FETCHING, isFetching });
 export const toggleIsFollowingProgress = (isFetching, userId) => ({ type: ACTION_CONST.TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId });
+
+export const getUsers = (currentPage,pageSize) => {
+
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false));
+                dispatch(setUsers(data.items));
+                dispatch(setUsersTotalCount(data.totalCount));
+
+            });
+    }
+}
+
 export default usersReducer;
