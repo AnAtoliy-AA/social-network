@@ -5,6 +5,7 @@ const ACTION_CONST = {
     UPDATE_NEW_POST_TEXT: 'UPDATE-NEW-POST-TEXT',
     SET_USER_PROFILE: 'SET_USER_PROFILE',
     SET_STATUS: 'SET_STATUS',
+    SAVE_PHOTO_SUCCESS: 'SAVE_PHOTO_SUCCESS',
 }
 
 let initialState = {
@@ -44,6 +45,8 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
+        case ACTION_CONST.SAVE_PHOTO_SUCCESS:
+            return { ...state, profile: { ...state.profile, photos: action.photos } }
         default:
             return state;
     }
@@ -53,6 +56,7 @@ export const addPostActionCreator = () => ({ type: ACTION_CONST.ADD_POST });
 export const updateNewPostTextActionCreator = (text) => ({ type: ACTION_CONST.UPDATE_NEW_POST_TEXT, newPostText: text });
 export const setUserProfile = (profile) => ({ type: ACTION_CONST.SET_USER_PROFILE, profile });
 export const setStatus = (status) => ({ type: ACTION_CONST.SET_STATUS, status });
+export const savePhotoSuccess = (photos) => ({ type: ACTION_CONST.SAVE_PHOTO_SUCCESS, photos });
 
 export const getUserProfile = (userId) => (dispatch) => {
     usersAPI.getProfile(userId)
@@ -63,17 +67,26 @@ export const getUserProfile = (userId) => (dispatch) => {
 
 export const getUserStatus = (userId) => (dispatch) => {
     profileAPI.getStatus(userId)
-    .then(response => {
-        dispatch(setStatus(response.data));
-    });
+        .then(response => {
+            dispatch(setStatus(response.data));
+        });
 }
 
 export const updateStatus = (status) => (dispatch) => {
     profileAPI.updateStatus(status)
         .then(response => {
-           if (response.data.resultCode === 0) {
-               dispatch(setStatus(status));
-           }
+            if (response.data.resultCode === 0) {
+                dispatch(setStatus(status));
+            }
+        });
+}
+
+export const savePhoto = (file) => (dispatch) => {
+    profileAPI.savePhoto(file)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(savePhotoSuccess(response.data.data.photos));
+            }
         });
 }
 
