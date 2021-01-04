@@ -6,6 +6,7 @@ import { Element } from '../common/FormsControls/FormsControls';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import styles from '../common/FormsControls/FormsControl.module.css';
 
 const MAX_LENGTH = 50;
 
@@ -39,6 +40,9 @@ const LoginForm = (props) => {
                     type={'checkbox'}
                 />
             </div>
+            {props.error && <div className={styles.formSummaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>
@@ -65,7 +69,7 @@ const Login = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth
 })
 
 
