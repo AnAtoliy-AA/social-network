@@ -6,8 +6,6 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-// import { withAuthRedirect } from '../../hoc/withAuthRedirect';
-
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
@@ -15,6 +13,9 @@ class ProfileContainer extends React.Component {
 
         if (!userId) {
             userId = this.props.authorizedUserId;
+            if (!userId) {
+                this.props.history.push('/login');
+            }
         }
 
         this.props.getUserProfile(userId);

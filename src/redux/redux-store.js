@@ -1,5 +1,6 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 
+import appReducer from "./app-reducer";
 import authReducer from "./auth-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import { reducer as formReducer } from 'redux-form';
@@ -14,7 +15,8 @@ let reducers = combineReducers({
     navBarPage: navBarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
