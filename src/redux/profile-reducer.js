@@ -5,6 +5,7 @@ const ACTION_CONST = {
     SET_USER_PROFILE: 'SET_USER_PROFILE',
     SET_STATUS: 'SET_STATUS',
     SAVE_PHOTO_SUCCESS: 'SAVE_PHOTO_SUCCESS',
+    DELETE_POST: 'DELETE_POST',
 }
 
 let initialState = {
@@ -38,6 +39,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 status: action.status
             }
+        case ACTION_CONST.DELETE_POST:
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId)
+            }
         case ACTION_CONST.SAVE_PHOTO_SUCCESS:
             return { ...state, profile: { ...state.profile, photos: action.photos } }
         default:
@@ -45,9 +51,10 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = (newPostText) => ({ type: ACTION_CONST.ADD_POST ,newPostText});
+export const addPostActionCreator = (newPostText) => ({ type: ACTION_CONST.ADD_POST, newPostText });
 export const setUserProfile = (profile) => ({ type: ACTION_CONST.SET_USER_PROFILE, profile });
 export const setStatus = (status) => ({ type: ACTION_CONST.SET_STATUS, status });
+export const deletePost = (postId) => ({ type: ACTION_CONST.DELETE_POST, postId });
 export const savePhotoSuccess = (photos) => ({ type: ACTION_CONST.SAVE_PHOTO_SUCCESS, photos });
 
 export const getUserProfile = (userId) => (dispatch) => {
