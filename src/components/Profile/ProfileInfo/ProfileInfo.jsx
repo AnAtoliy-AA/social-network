@@ -1,7 +1,12 @@
 import Preloader from '../../common/Preloader/Preloader'
-import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import React from 'react';
 import styles from './ProfileInfo.module.css';
+
+// import ProfileStatus from './ProfileStatus';
+
+
+
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -20,7 +25,7 @@ if (e.target.files.length) {
             <div className={styles.descriptionBlock}>
                 <img src={props.profile.photos.large} alt="" />
                 <input type={'file'} onChange={onMainPhotoSelected}/>
-                <ProfileStatus
+                <ProfileStatusWithHooks
                     status={props.status}
                     updateStatus={props.updateStatus}
                 />
