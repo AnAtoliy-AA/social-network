@@ -1,5 +1,5 @@
 const ACTION_CONST = {
-    ADD_MESSAGE: 'ADD-MESSAGE',
+    ADD_MESSAGE: 'DIALOGS_REDUCER_ADD-MESSAGE',
 }
 
 let initialState = {
