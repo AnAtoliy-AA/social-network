@@ -45,7 +45,9 @@
     ]
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.11",
     "@types/redux-form": "^8.3.1",
+    "classnames": "^2.2.6",
     "react-test-renderer": "^16.13.1"
   }
 }
