@@ -2,8 +2,6 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import React from 'react';
 
-// import styles from './Profile.module.css';
-
 const Profile = (props) => {
     return (
         <div>
@@ -11,7 +9,7 @@ const Profile = (props) => {
                 profile={props.profile}
                 status={props.status}
                 updateStatus={props.updateStatus}
-                savePhoto= {props.savePhoto}
+                savePhoto={props.savePhoto}
             />
             <MyPostsContainer />
         </div>
