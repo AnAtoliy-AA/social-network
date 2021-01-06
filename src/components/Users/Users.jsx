@@ -2,25 +2,15 @@ import { NavLink } from 'react-router-dom';
 import React from 'react';
 import styles from './Users.module.css';
 import userPhotoDefault from '../../assets/images/user-photo-default.png';
+import Paginator from '../common/Paginator/Paginator';
 
-let Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-    let pages = [];
-
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
+let Users = ({ totalUsersCount, pageSize, currentPage, onPageChanged, ...props }) => {
     return <div>
-        <div>
-            {pages.map(p => {
-                return <span
-                    key={p}
-                    className={(props.currentPage === p) && styles.selectedPage}
-                    onClick={() => { props.onPageChanged(p) }}>{p}</span>
-            })}
-        </div>
+        < Paginator
+            totalUsersCount={totalUsersCount}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChanged={onPageChanged} />
         {
             props.users.map(u => <div key={u.id}>
                 <span>

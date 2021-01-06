@@ -1,5 +1,5 @@
 import { Field, reduxForm } from 'redux-form'
-import { login, logout } from '../../redux/auth-reducer'
+import { login } from '../../redux/auth-reducer'
 import { maxLengthCreator, required } from '../../utils/validators/validators';
 
 import { Element } from '../common/FormsControls/FormsControls';
@@ -13,9 +13,9 @@ const MAX_LENGTH = 50;
 const maxLength = maxLengthCreator(MAX_LENGTH);
 const Input = Element("input");
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit,error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field
                     name={'email'}
@@ -40,8 +40,8 @@ const LoginForm = (props) => {
                     type={'checkbox'}
                 />
             </div>
-            {props.error && <div className={styles.formSummaryError}>
-                {props.error}
+            {error && <div className={styles.formSummaryError}>
+                {error}
             </div>}
             <div>
                 <button>Login</button>
@@ -52,11 +52,11 @@ const LoginForm = (props) => {
 
 const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
-const Login = (props) => {
+const Login = ({login,isAuth}) => {
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        login(formData.email, formData.password, formData.rememberMe)
     }
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={'profile'} />
     }
 
