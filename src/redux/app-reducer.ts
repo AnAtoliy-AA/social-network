@@ -4,11 +4,15 @@ const ACTION_CONST = {
     SET_INITIALIZED_SUCCESS: 'APP_REDUCER_SET_INITIALIZED_SUCCESS',
 }
 
+export type InitialStateType = {
+    initialized: boolean
+}
+
 let initialState = {
     initialized: false
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state: InitialStateType = initialState, action: { type: any; }): InitialStateType => {
     switch (action.type) {
         case ACTION_CONST.SET_INITIALIZED_SUCCESS: {
             return {
@@ -21,9 +25,13 @@ const appReducer = (state = initialState, action) => {
     }
 }
 
-export const initializedSuccess = () => ({ type: ACTION_CONST.SET_INITIALIZED_SUCCESS });
+type InitializedSuccessActionType = {
+    type: typeof ACTION_CONST.SET_INITIALIZED_SUCCESS
+}
 
-export const initializeApp = () => (dispatch) => {
+export const initializedSuccess = ():InitializedSuccessActionType => ({ type: ACTION_CONST.SET_INITIALIZED_SUCCESS });
+
+export const initializeApp = () => (dispatch:any) => {
     let promise = dispatch(getAuthUserData());
 
     promise.then(() => {
