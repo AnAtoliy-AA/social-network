@@ -2,7 +2,7 @@ import './App.css';
 
 import { Route, withRouter } from 'react-router-dom';
 
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 
 import HeaderContainer from './components/Header/HeaderContainer'; import { compose } from 'redux';
 import Navbar from './components/Navbar/Navbar'; import { connect } from 'react-redux';
@@ -10,6 +10,7 @@ import Preloader from './components/common/Preloader/Preloader'; import { initia
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/redux-store';
+import { withSuspense } from './hoc/withSuspense';
 
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
@@ -31,32 +32,20 @@ class App extends Component {
         <div className='app-wrapper__content'>
           <Route
             path='/dialogs'
-            render={() => {
-              return <Suspense fallback={<Preloader/>}>
-                <DialogsContainer />
-              </Suspense>
-            }} />
+            render={withSuspense(DialogsContainer)}
+          />
           <Route
             path='/profile/:userId?'
-            render={() => {
-              return <Suspense fallback={<Preloader/>}>
-                <ProfileContainer />
-              </Suspense>
-            }} />
+            render={withSuspense(ProfileContainer)}
+          />
           <Route
             path='/users'
-            render={() => {
-              return <Suspense fallback={<Preloader/>}>
-                <UsersContainer />
-              </Suspense>
-            }} />
+            render={withSuspense(UsersContainer)}
+          />
           <Route
             path='/login'
-            render={() => {
-              return <Suspense fallback={<Preloader/>}>
-                <LoginPage />
-              </Suspense>
-            }} />
+            render={withSuspense(LoginPage)}
+          />
         </div>
       </div>
     );
