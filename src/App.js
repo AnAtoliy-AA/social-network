@@ -2,27 +2,24 @@ import './App.css';
 
 import { Route, withRouter } from 'react-router-dom';
 
-import { Component } from 'react';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
-import LoginPage from './components/Login/Login';
-import Navbar from './components/Navbar/Navbar';
-import Preloader from './components/common/Preloader/Preloader';
-import ProfileContainer from './components/Profile/ProfileContainer';
-import React from 'react';
-import UsersContainer from './components/Users/UsersContainer';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-import { initializeApp } from './redux/app-reducer';
+import React, { Component, Suspense } from 'react';
+
+import HeaderContainer from './components/Header/HeaderContainer'; import { compose } from 'redux';
+import Navbar from './components/Navbar/Navbar'; import { connect } from 'react-redux';
+import Preloader from './components/common/Preloader/Preloader'; import { initializeApp } from './redux/app-reducer';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/redux-store';
 
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const LoginPage = React.lazy(() => import('./components/Login/Login'));
 
 class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
-}
+  }
   render() {
     if (!this.props.initialized) {
       return <Preloader />
@@ -34,16 +31,32 @@ class App extends Component {
         <div className='app-wrapper__content'>
           <Route
             path='/dialogs'
-            render={() => <DialogsContainer />} />
+            render={() => {
+              return <Suspense fallback={<Preloader/>}>
+                <DialogsContainer />
+              </Suspense>
+            }} />
           <Route
             path='/profile/:userId?'
-            render={() => <ProfileContainer />} />
+            render={() => {
+              return <Suspense fallback={<Preloader/>}>
+                <ProfileContainer />
+              </Suspense>
+            }} />
           <Route
             path='/users'
-            render={() => <UsersContainer />} />
+            render={() => {
+              return <Suspense fallback={<Preloader/>}>
+                <UsersContainer />
+              </Suspense>
+            }} />
           <Route
             path='/login'
-            render={() => <LoginPage />} />
+            render={() => {
+              return <Suspense fallback={<Preloader/>}>
+                <LoginPage />
+              </Suspense>
+            }} />
         </div>
       </div>
     );
@@ -56,14 +69,14 @@ const mapStateToProps = (state) => ({
 
 const AppContainer = compose(
   withRouter,
-  connect(mapStateToProps, { initializeApp}))(App);
+  connect(mapStateToProps, { initializeApp }))(App);
 
 const MainApp = (props) => {
 
- return <BrowserRouter>
-      <Provider store={store}>
-          <AppContainer />
-      </Provider>
+  return <BrowserRouter>
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
   </BrowserRouter>
 }
 
