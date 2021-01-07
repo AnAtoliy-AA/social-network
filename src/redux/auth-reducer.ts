@@ -1,3 +1,4 @@
+// import { InitialStateType } from './auth-reducer';
 // import { setAuthUserData } from './auth-reducer';
 import { authAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
@@ -6,19 +7,21 @@ const ACTION_CONST = {
     SET_USER_DATA: 'AUTH_REDUCER_SET_USER_DATA',
 }
 
-export type InitialStateType = {
-    userId: number | null
-    email: string | null
-    login: string | null
-    isAuth: boolean 
-}
+// export type InitialStateType = {
+//     userId: number | null
+//     email: string | null
+//     login: string | null
+//     isAuth: boolean 
+// }
 
-let initialState: InitialStateType = {
-    userId: null,
-    email: null,
-    login: null,
+let initialState = {
+    userId: null as number | null,
+    email: null as string | null,
+    login: null as string | null,
     isAuth: false,
 };
+
+export type InitialStateType = typeof initialState;
 
 const authReducer = (state:InitialStateType = initialState, action: { type: any; payload: any; }):InitialStateType => {
     switch (action.type) {

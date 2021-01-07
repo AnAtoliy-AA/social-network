@@ -1,4 +1,4 @@
-import dialogsReducer from "./dialogs-reducer";
+import dialogsReducer from "./dialogs-reducer.ts";
 import navBarReducer from "./navbar-reducer";
 import profileReducer from "./profile-reducer";
 
